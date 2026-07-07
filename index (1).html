@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Tata</title>
+    
+    <meta property="og:title" content="A Special Gift for Tata 👑">
+    <meta property="og:description" content="Klik untuk membuka kado kecil spesial ulang tahunmu yang ke-14! ✨">
+    <meta property="og:image" content="tata.jpg">
+    <meta property="og:type" content="website">
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="icon" href="https://fav.farm/👑" />
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="twinkle-stars"></div>
+    <div class="moon"></div>
+    <div id="cinematicOverlay"></div>
+
+    <audio id="bgMusic" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="container" id="container">
+        <div id="page1">
+            <h1 class="glow-text">Happy Birthday</h1>
+            <h2 class="glow-text">Tata Aulia Syahnita</h2>
+            <p class="subtitle">A Special Gift Just For You ❤️</p>
+            
+            <button id="giftBtn" class="glow-button">🎁 Open Your Gift</button>
+            
+            <div id="message" class="message">
+                <h3 id="title"></h3>
+                <p id="typing"></p>
+            </div>
+        </div>
+
+        <div id="page2" style="display:none;">
+            <h2 class="glow-text">Happy Birthday</h2>
+            <h3>Tata Aulia Syahnita</h3>
+            <p class="subtitle">
+                Every year is a new beginning. I hope this year brings you more happiness, more beautiful memories, and many reasons to smile.
+            </p>
+            
+            <button id="letterBtn" class="glow-button">📩 Open Letter</button>
+            
+            <div class="photo-wrapper" id="photoWrapper" style="display:none;">
+                <img src="tata.jpg" alt="Tata" class="tata-photo" onerror="this.style.display='none';">
+            </div>
+
+            <div id="letter" class="message"></div>
+            <button id="finalBtn" class="glow-button" style="display:none; margin-top:25px;">✨ One Last Thing...</button>
+        </div>
+
+        <div id="page3" style="display:none;"></div>
+    </div>
+
+    <button id="audioToggle" class="audio-control-btn" style="display: none;">🔊</button>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,261 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    height: 100vh;
+    height: 100dvh; /* Perbaikan agar responsif dan pas di semua layar HP */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #050005, #110011, #1a0010);
+    overflow: hidden;
+    color: white;
+    transition: background 3s ease;
+}
+
+/* Overlay Sinematik Penutup */
+#cinematicOverlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0);
+    z-index: 5;
+    pointer-events: none;
+    transition: background 3s ease;
+}
+
+#cinematicOverlay.darken {
+    background: rgba(0, 0, 0, 0.88);
+}
+
+.container {
+    text-align: center;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, .04);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: 0 0 40px rgba(255, 105, 180, .15);
+    width: 90%;
+    max-width: 420px;
+    padding: 35px 28px;
+    z-index: 10;
+    animation: fadeUp 1s ease;
+}
+
+/* Glow Effect Judul (Playfair Display) */
+.glow-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    font-weight: 600;
+    color: #ff69b4;
+    text-shadow: 0 0 10px rgba(255, 105, 180, 0.4);
+    animation: textGlow 4s infinite alternate;
+}
+
+@keyframes textGlow {
+    0% { text-shadow: 0 0 10px rgba(255,105,180,0.4); color: #ff69b4; }
+    50% { text-shadow: 0 0 25px rgba(255,192,203,0.7); color: #ffb6c1; }
+    100% { text-shadow: 0 0 10px rgba(255,105,180,0.4); color: #ff477e; }
+}
+
+/* Tombol Berkilau */
+.glow-button {
+    margin-top: 15px;
+    padding: 14px 32px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    background: #ff477e;
+    color: white;
+    cursor: pointer;
+    transition: .3s all ease;
+    box-shadow: 0 0 15px rgba(255, 71, 126, 0.5);
+    animation: buttonGlow 3s infinite alternate;
+}
+
+.glow-button:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 0 25px #ff758f;
+    background: #ff758f;
+}
+
+@keyframes buttonGlow {
+    0% { box-shadow: 0 0 15px rgba(255, 71, 126, 0.4); }
+    100% { box-shadow: 0 0 25px rgba(255, 20, 147, 0.8); }
+}
+
+/* Animasi Kotak Kado */
+.wobble {
+    animation: wobbleAnim 0.5s ease 3;
+}
+@keyframes wobbleAnim {
+    0%, 100% { transform: rotate(0); }
+    25% { transform: rotate(-8deg) scale(1.05); }
+    75% { transform: rotate(8deg) scale(1.05); }
+}
+
+.burst-open {
+    animation: burstAnim 0.7s forwards;
+}
+@keyframes burstAnim {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.3); background: #fff; box-shadow: 0 0 40px #fff; opacity: 0.7; }
+    100% { transform: scale(0); opacity: 0; visibility: hidden; }
+}
+
+/* Langit Malam Terbuka */
+.stars {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-image: radial-gradient(white 1px, transparent 1px);
+    background-size: 70px 70px;
+    opacity: 0.3; z-index: -2;
+}
+
+.twinkle-stars {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-image: radial-gradient(rgba(255,255,255,0.9) 1.5px, transparent 1.5px);
+    background-size: 120px 120px;
+    animation: twinkle 3s infinite ease-in-out alternate;
+    z-index: -2;
+}
+@keyframes twinkle {
+    0% { opacity: 0.2; }
+    50% { opacity: 0.9; }
+    100% { opacity: 0.3; }
+}
+
+.moon {
+    position: fixed; width: 100px; height: 100px; border-radius: 50%;
+    background: radial-gradient(circle, #fffef2, #ffda79);
+    top: 40px; right: 40px;
+    box-shadow: 0 0 30px rgba(255, 218, 121, 0.5), 0 0 60px rgba(255, 255, 255, 0.3);
+    animation: floatMoon 5s ease-in-out infinite alternate;
+    z-index: -2;
+}
+@keyframes floatMoon {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-12px); }
+}
+
+/* Bintang Jatuh */
+.shooting-star {
+    position: fixed; top: -10px;
+    width: 2px; height: 70px;
+    background: linear-gradient(to bottom, rgba(255,255,255,1), rgba(255,255,255,0));
+    pointer-events: none; z-index: -1;
+    animation: shoot 1.5s linear forwards;
+}
+@keyframes shoot {
+    0% { transform: translateX(0) translateY(0) rotate(-45deg) scale(0); opacity: 1; }
+    100% { transform: translateX(100vw) translateY(80vh) rotate(-45deg) scale(1); opacity: 0; }
+}
+
+/* Kelopak Sakura */
+.sakura {
+    position: fixed; top: -20px;
+    background: linear-gradient(135deg, #ffb7c5, #ff9ebb);
+    border-radius: 50% 0 50% 50%;
+    pointer-events: none; z-index: 1;
+    animation: sakuraFall linear forwards;
+}
+@keyframes sakuraFall {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(105vh) rotate(540deg); opacity: 0; }
+}
+
+/* Sentuhan Hati (Cursor Trail) */
+.cursor-heart {
+    position: fixed; color: #ff477e;
+    font-size: 14px; pointer-events: none;
+    z-index: 9999; animation: heartFade 1.2s ease-out forwards;
+}
+@keyframes heartFade {
+    0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    100% { transform: translate(-50%, -80px) scale(0.4); opacity: 0; }
+}
+
+/* Desain Komposisi Foto Off-center & Negative Space */
+.photo-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end; /* Menggeser gambar ke kanan (off-center) */
+    margin: 20px 0;
+    padding-right: 10px;
+}
+
+.tata-photo {
+    width: 65%; /* Sisa ruang kiri menjadi negative space */
+    max-width: 190px;
+    border-radius: 10px;
+    /* Filter Hitam Putih Estetik Melankolis */
+    filter: grayscale(100%) contrast(115%) brightness(90%); 
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+    opacity: 0;
+    transform: translateY(15px);
+    transition: 1.5s all ease;
+}
+
+.tata-photo.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Tombol Kontrol Suara (Mute/Unmute) */
+.audio-control-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 20px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+.audio-control-btn:hover {
+    background: rgba(255, 71, 126, 0.3);
+    transform: scale(1.1);
+}
+
+/* Teks & Animasi Dasar */
+.subtitle { margin: 15px 0 25px 0; color: #ccc; font-size: 15px; font-weight: 300; }
+.message { margin-top: 20px; line-height: 1.8; color: #f5f5f5; font-size: 14px; opacity: 0; transform: translateY(15px); transition: 0.8s; text-align: left; }
+.message.show { opacity: 1; transform: translateY(0); }
+.confetti { position: fixed; width: 8px; height: 8px; top: -20px; animation: fall linear forwards; z-index: 2; }
+@keyframes fall { to { transform: translateY(110vh) rotate(540deg); opacity: 0; } }
+
+.heart { position: fixed; bottom: -20px; color: #ff5c7a; font-size: 18px; animation: floatHeart linear forwards; pointer-events: none; z-index: -1; }
+@keyframes floatHeart { from { transform: translateY(0); opacity: 0.7; } to { transform: translateY(-120vh); opacity: 0; } }
+
+#page1, #page2, #page3 { animation: fade .8s ease; }
+@keyframes fade { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Penutup Akhir Sinematik */
+.cinematic-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; line-height: 2;
+    color: #dcdcdc; font-style: italic;
+    animation: fadeInCinematic 3s ease forwards;
+    text-align: center;
+}
+.cinematic-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px; color: #ff477e; margin-top: 35px;
+    font-weight: 600; text-align: center;
+    text-shadow: 0 0 15px rgba(255, 71, 126, 0.7);
+    animation: fadeInCinematic 4s ease forwards;
+}
+@keyframes fadeInCinematic { from { opacity: 0; } to { opacity: 1; } }

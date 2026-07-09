@@ -41,10 +41,15 @@ body {
     width: 90%;
     max-width: 420px;
     padding: 35px 28px;
+    max-height: 80vh;      /* Batasi tinggi kotak kado maksimal 80% dari layar */
+    overflow-y: auto;      /* Otomatis memunculkan fitur scroll jika teks kepanjangan */
+    scrollbar-width: none; /* Menyembunyikan batang scrollbar di Firefox biar estetik */
     z-index: 10;
     animation: fadeUp 1s ease;
 }
-
+.container::-webkit-scrollbar {
+    display: none;
+}
 /* Glow Effect Judul (Playfair Display) */
 .glow-text {
     font-family: 'Playfair Display', serif;

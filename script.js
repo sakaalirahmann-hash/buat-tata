@@ -95,7 +95,7 @@ letterBtn.onclick = (e) => {
     letter.classList.add("show");
     letter.innerHTML = `
     <h3 style="font-family:'Playfair Display', serif; font-size:18px; color:#ff69b4; margin-bottom:10px;">Happy 14th Birthday, Tata. 🌸</h3>
-    <p>Hari ini bukan hanya tentang bertambahnya usia Tata... tetapi juga tentang bertambahnya cerita, pengalaman, dan harapan baru.. ^^ Semoga kamu dan keluarga selalu diberi kesehatan dan kebahagiaan bersama yaa.. serta dikelilingi oleh orang-orang yang sayang sama kamu.. ^^ Dan sebelumnya aku minta maaf cuma bisa kasih ucapan aja, hehe... Terus berkembang dan tetap tersenyum yaa... Semua impianmu pasti menjadi kenyataan, because you deserve to be happy. ^^ Enjoy your special day Tata..^^</p>
+    <p>Hari ini bukan hanya tentang bertambahnya usia Tata... tetapi juga tentang bertambahnya cerita, pengalaman, dan harapan baru.. ^^ Semoga kamu dan keluarga selalu diberi kesehatan dan kebahagiaan bersama yaa.. serta dikelilingi oleh orang-orang yang sayang sama kamu.. ^^ Dan sebelumnya aku minta maaf cuma bisa kasih kamu ucapan dari sini :), and.. terus berkembang dan tetap tersenyum yaa... Semua impianmu pasti menjadi kenyataan, because you deserve to be happy. ^^ Enjoy your special day Tata..^^</p>
     `;
     letterBtn.style.display = "none";
     

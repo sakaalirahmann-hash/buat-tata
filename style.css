@@ -4,7 +4,7 @@
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
 }
-
+ 
 body {
     height: 100vh;
     height: 100dvh; /* Perbaikan agar responsif dan pas di semua layar HP */

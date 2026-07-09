@@ -11,12 +11,12 @@ const audioToggle = document.getElementById("audioToggle");
 
 const text = `Selamat ulang tahun yang ke-14. Semoga tahun ini Tata membawa banyak kebahagiaan, kesehatan, dan pengalaman baru untuk diri sendiri maupun keluarga... ^^ Tetap menjadi dirimu sendiri yaa.., terus berkembang, dan semoga setiap harapan baikmu pasti akan tercapai ^^ Have a wonderful birthday Tata..^^`;
 
-// ✨ 1. Efek Musik Fade In Halus & Tombol Mute/Unmute
+// ✨ 1. Smooth Music Fade In dengan Kontrol Mute/Unmute
 function fadeInMusic() {
     bgMusic.volume = 0;
     bgMusic.play().catch(() => {});
     
-    // Tampilkan tombol audio di pojok kanan bawah
+    // Tampilkan tombol kontrol audio di pojok
     audioToggle.style.display = "flex";
 
     let vol = 0;
@@ -28,9 +28,9 @@ function fadeInMusic() {
             bgMusic.volume = 1;
             clearInterval(fadeTimer);
         }
-    }, 200);
+    }, 200); // Volume penuh dalam waktu sekitar 4 detik
 
-    // Fungsi klik tombol Mute / Unmute
+    // Tombol Mute / Unmute klik handler
     audioToggle.onclick = (e) => {
         e.preventDefault();
         if (bgMusic.muted) {
@@ -43,23 +43,23 @@ function fadeInMusic() {
     };
 }
 
-// 🎁 2. Animasi Kotak Kado Bergetar & Meledak Terbuka
+// 🎁 5. Animasi Kado Kotak Hadiah Bergetar & Terbuka
 giftBtn.onclick = (e) => {
     e.preventDefault();
     giftBtn.disabled = true;
     
     fadeInMusic(); 
 
-    // Langkah 1: Kado bergoyang
+    // Langkah 1: Goyang perlahan
     giftBtn.classList.add("wobble");
 
     setTimeout(() => {
-        // Langkah 2: Kado meledak terbuka (burst-open)
+        // Langkah 2: Membuka dan menghilang dengan efek burst
         giftBtn.classList.remove("wobble");
         giftBtn.classList.add("burst-open");
 
         setTimeout(() => {
-            // Langkah 3: Tampilkan teks ketikan ucapan pertama
+            // Langkah 3: Tampilkan ketikan pesan ucapan pertama
             message.classList.add("show");
             title.textContent = "🎉 Happy Birthday, Tata!";
             createConfetti();
@@ -68,7 +68,6 @@ giftBtn.onclick = (e) => {
     }, 1500); 
 };
 
-// ✍️ 3. Logika Ketikan Teks Efek Lambat & Kalem
 function startTyping() {
     let i = 0;
     typing.textContent = "";
@@ -78,16 +77,15 @@ function startTyping() {
         if (i >= text.length) {
             clearInterval(timer);
         }
-    }, 60); // ✨ LEBIH LAMBAT & KALEM (60ms per karakter)
+    }, 35);
 
-    // Perubahan Otomatis ke Halaman 2 (Surat & Foto) setelah Tata selesai membaca
+    // Otomatis ganti ke Halaman Surat setelah mengetik selesai
     setTimeout(() => {
         page1.style.display = "none";
         page2.style.display = "block";
-    }, 38000); // ✨ LEBIH LAMA (38 detik, memberi waktu luang membaca dengan tenang)
+    }, 18000); 
 }
 
-// 📩 4. Tombol Buka Surat Halaman 2 & Memunculkan Foto
 const letterBtn = document.getElementById("letterBtn");
 const letter = document.getElementById("letter");
 const finalBtn = document.getElementById("finalBtn");
@@ -101,9 +99,9 @@ letterBtn.onclick = (e) => {
     `;
     letterBtn.style.display = "none";
     
-    // Memunculkan kontainer foto secara halus (off-center)
+    // Memunculkan slot gambar secara mulus
     const photoWrapper = document.getElementById("photoWrapper");
-    if(photoWrapper) photoWrapper.style.display = "flex";
+    photoWrapper.style.display = "flex";
     setTimeout(() => {
         const img = document.querySelector(".tata-photo");
         if(img) img.classList.add("show");
@@ -112,14 +110,14 @@ letterBtn.onclick = (e) => {
     finalBtn.style.display = "inline-block";
 };
 
-// 🌙 5. Halaman Penutup Sinematik Melankolis (Meredup Hitam)
+// 🌙 7. Penutup yang Sinematik
 finalBtn.onclick = (e) => {
     e.preventDefault();
     page2.style.display = "none";
     page3.style.display = "block";
     
-    // Mengaktifkan background meredup gelap dramatis
-    if(overlay) overlay.classList.add("darken");
+    // Membuat layar meredup/menggelap dramatis
+    overlay.classList.add("darken");
 
     page3.innerHTML = `
         <div class="cinematic-text">
@@ -130,11 +128,9 @@ finalBtn.onclick = (e) => {
     `;
 };
 
-// ==========================================
-// ✨ LOGIKA EFEK LATAR BELAKANG PREMIUM ✨
-// ==========================================
+// --- LOGIKA BACKGROUND & LINGKUNGAN ---
 
-// 🌸 Efek Kelopak Sakura Gugur
+// 🌸 3. Efek Kelopak Sakura Gugur
 setInterval(createSakura, 500);
 function createSakura() {
     const sakura = document.createElement("div");
@@ -150,7 +146,7 @@ function createSakura() {
     setTimeout(() => sakura.remove(), 7000);
 }
 
-// 🌌 Efek Shooting Star (Bintang Jatuh Berkala)
+// 🌌 2. Efek Shooting Star (Bintang Jatuh)
 setInterval(createShootingStar, 4000);
 function createShootingStar() {
     const star = document.createElement("div");
@@ -161,7 +157,7 @@ function createShootingStar() {
     setTimeout(() => star.remove(), 1500);
 }
 
-// 💖 Efek Jejak Sentuhan Hati (Cursor & Touch Trail)
+// 💖 4. Heart Cursor Trail (Jejak Sentuhan Layar)
 function spawnHeartTrail(x, y) {
     const heart = document.createElement("div");
     heart.className = "cursor-heart";
@@ -185,7 +181,7 @@ document.addEventListener("touchmove", (e) => {
     }
 });
 
-// 🎉 Ledakan Konfeti Saat Kado Dibuka
+// Ledakan Konfeti
 function createConfetti() {
     const colors = ["#ff2b2b", "#ffffff", "#ffd700", "#ff8c8c", "#ffb7c5"];
     for (let i = 0; i < 90; i++) {
@@ -199,7 +195,7 @@ function createConfetti() {
     }
 }
 
-// ❤️ Hati Melayang Lembut di Background
+// Hati Melayang di Background Lambat
 setInterval(createBackgroundHeart, 700);
 function createBackgroundHeart() {
     const heart = document.createElement("div");

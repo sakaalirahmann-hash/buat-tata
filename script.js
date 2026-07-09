@@ -9,7 +9,7 @@ const page3 = document.getElementById("page3");
 const overlay = document.getElementById("cinematicOverlay");
 const audioToggle = document.getElementById("audioToggle");
 
-const text = `Selamat ulang tahun yang ke-14. Semoga tahun ini Tata membawa banyak kebahagiaan, kesehatan, dan pengalaman baru untuk diri sendiri maupun keluarga... ^^ Tetap menjadi dirimu sendiri yaa.., terus berkembang, dan semoga setiap harapan baikmu segera tercapai ^^ Have a wonderful birthday Tata..^^`;
+const text = `Selamat ulang tahun yang ke-14,Tata. Semoga tahun ini Tata membawa banyak kebahagiaan, kesehatan, dan pengalaman baru untuk diri sendiri maupun keluarga... ^^ Tetap menjadi dirimu sendiri yaa.., terus berkembang, dan semoga setiap harapan baikmu segera tercapai ^^ Have a wonderful birthday Tata..^^`;
 
 // ✨ 1. Smooth Music Fade In dengan Kontrol Mute/Unmute
 function fadeInMusic() {
@@ -77,13 +77,13 @@ function startTyping() {
         if (i >= text.length) {
             clearInterval(timer);
         }
-    }, 60);
+    }, 80);
 
     // Otomatis ganti ke Halaman Surat setelah mengetik selesai
     setTimeout(() => {
         page1.style.display = "none";
         page2.style.display = "block";
-    }, 35000); 
+    }, 38000); 
 }
 
 const letterBtn = document.getElementById("letterBtn");

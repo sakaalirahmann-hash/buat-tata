@@ -187,23 +187,20 @@ body {
 .photo-wrapper {
     width: 100%;
     display: flex;
-    justify-content: flex-end; /* Menggeser gambar ke kanan (off-center) */
+    justify-content: center; /* Diubah dari flex-end ke center agar di tengah */
     margin: 20px 0;
-    padding-right: 10px;
 }
 
 .tata-photo {
-    width: 65%; /* Sisa ruang kiri menjadi negative space */
-    max-width: 190px;
-    border-radius: 10px;
-    /* Filter Hitam Putih Estetik Melankolis */
-    filter: grayscale(100%) contrast(115%) brightness(90%); 
-    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+    width: 75%; 
+    max-width: 220px;
+    border-radius: 12px;
+    filter: none; /* Efek hitam-putih dihapus total agar foto berwarna asli */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
     opacity: 0;
     transform: translateY(15px);
     transition: 1.5s all ease;
 }
-
 .tata-photo.show {
     opacity: 1;
     transform: translateY(0);

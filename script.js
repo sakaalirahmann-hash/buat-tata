@@ -1,209 +1,183 @@
 const bgMusic = document.getElementById("bgMusic");
+
+document.addEventListener("click", () => {
+    bgMusic.play().catch(() => {});
+}, { once: true });
+
 const giftBtn = document.getElementById("giftBtn");
 const message = document.getElementById("message");
 const title = document.getElementById("title");
 const typing = document.getElementById("typing");
+
 const page1 = document.getElementById("page1");
 const page2 = document.getElementById("page2");
 const page3 = document.getElementById("page3");
-const overlay = document.getElementById("cinematicOverlay");
-const audioToggle = document.getElementById("audioToggle");
 
-const text = `Selamat ulang tahun yang ke-14. Semoga tahun ini Tata membawa banyak kebahagiaan, kesehatan, dan pengalaman baru untuk diri sendiri maupun keluarga... ^^ Tetap menjadi dirimu sendiri yaa.., terus berkembang, dan semoga setiap harapan baikmu pasti akan tercapai ^^ Have a wonderful birthday Tata..^^`;
+const text = `Selamat ulang tahun yang ke-14.
 
-// ✨ 1. Smooth Music Fade In dengan Kontrol Mute/Unmute
-function fadeInMusic() {
-    bgMusic.volume = 0;
-    bgMusic.play().catch(() => {});
-    
-    // Tampilkan tombol kontrol audio di pojok
-    audioToggle.style.display = "flex";
+Semoga tahun ini Tata membawa banyak kebahagiaan, kesehatan, dan pengalaman baru untuk diri sendiri maupun keluarga... ^^
 
-    let vol = 0;
-    let fadeTimer = setInterval(() => {
-        if (vol < 0.9) {
-            vol += 0.05;
-            bgMusic.volume = vol;
-        } else {
-            bgMusic.volume = 1;
-            clearInterval(fadeTimer);
-        }
-    }, 200); // Volume penuh dalam waktu sekitar 4 detik
+Tetap menjadi dirimu sendiri yaa.., terus berkembang, dan semoga setiap harapan baikmu pasti akan tercapai ^^
 
-    // Tombol Mute / Unmute klik handler
-    audioToggle.onclick = (e) => {
-        e.preventDefault();
-        if (bgMusic.muted) {
-            bgMusic.muted = false;
-            audioToggle.textContent = "🔊";
-        } else {
-            bgMusic.muted = true;
-            audioToggle.textContent = "🔇";
-        }
-    };
-}
+Have a wonderful birthday Tata..^^ 🎉`;
 
-// 🎁 5. Animasi Kado Kotak Hadiah Bergetar & Terbuka
-giftBtn.onclick = (e) => {
-    e.preventDefault();
+giftBtn.onclick = () => {
+
+    message.classList.add("show");
+    title.textContent = "🎂 Happy Birthday, Tata!";
+
     giftBtn.disabled = true;
-    
-    fadeInMusic(); 
+    giftBtn.textContent = "🎉 Happy Birthday";
 
-    // Langkah 1: Goyang perlahan
-    giftBtn.classList.add("wobble");
+    createConfetti();
 
-    setTimeout(() => {
-        // Langkah 2: Membuka dan menghilang dengan efek burst
-        giftBtn.classList.remove("wobble");
-        giftBtn.classList.add("burst-open");
-
-        setTimeout(() => {
-            // Langkah 3: Tampilkan ketikan pesan ucapan pertama
-            message.classList.add("show");
-            title.textContent = "🎉 Happy Birthday, Tata!";
-            createConfetti();
-            startTyping();
-        }, 500);
-    }, 1500); 
-};
-
-function startTyping() {
     let i = 0;
     typing.textContent = "";
+
     const timer = setInterval(() => {
+
         typing.textContent += text.charAt(i);
         i++;
+
         if (i >= text.length) {
             clearInterval(timer);
         }
-    }, 35);
 
-    // Otomatis ganti ke Halaman Surat setelah mengetik selesai
+    }, 60); // ✨ SEKARANG LEBIH LAMBAT: Dari 35 diubah ke 60 milidetik per karakter
+
     setTimeout(() => {
+
         page1.style.display = "none";
         page2.style.display = "block";
-    }, 18000); 
-}
+
+    }, 38000); // ✨ SEKARANG LEBIH LAMA: Dari 17000 (17 detik) diubah ke 38000 (38 detik)
+
+};
 
 const letterBtn = document.getElementById("letterBtn");
 const letter = document.getElementById("letter");
 const finalBtn = document.getElementById("finalBtn");
 
-letterBtn.onclick = (e) => {
-    e.preventDefault();
-    letter.classList.add("show");
-    letter.innerHTML = `
-    <h3 style="font-family:'Playfair Display', serif; font-size:18px; color:#ff69b4; margin-bottom:10px;">Happy 14th Birthday, Tata. 🌸</h3>
-    <p>Hari ini bukan hanya tentang bertambahnya usia Tata... tetapi juga tentang bertambahnya cerita, pengalaman, dan harapan baru.. ^^ Semoga kamu dan keluarga selalu diberi kesehatan dan kebahagiaan bersama yaa.. serta dikelilingi oleh orang-orang yang sayang sama kamu.. ^^ Dan sebelumnya aku minta maaf cuma bisa kasih ucapan aja, hehe... Terus berkembang dan tetap tersenyum yaa... Semua impianmu pasti menjadi kenyataan, because you deserve to be happy. ^^ Enjoy your special day Tata..^^</p>
-    `;
-    letterBtn.style.display = "none";
-    
-    // Memunculkan slot gambar secara mulus
-    const photoWrapper = document.getElementById("photoWrapper");
-    photoWrapper.style.display = "flex";
-    setTimeout(() => {
-        const img = document.querySelector(".tata-photo");
-        if(img) img.classList.add("show");
-    }, 100);
+letterBtn.onclick = () => {
 
+    letter.classList.add("show");
+
+    letter.innerHTML = `
+
+<h3>Happy 14th Birthday, Tata. ❤️</h3>
+
+<p>
+
+Hari ini bukan hanya tentang bertambahnya usia Tata...
+tetapi juga tentang bertambahnya cerita,
+pengalaman,
+dan harapan baru.. ^^
+
+Semoga kamu dan keluarga selalu diberi kesehatan dan kebahagiaan bersama yaa..
+serta dikelilingi oleh orang-orang yang sayang sama kamu.. ^^
+
+Dan sebelumnya aku minta maaf cuma bisa kasih ucapan aja, hehe...
+
+Terus berkembang dan tetap tersenyum yaa...
+Semua impianmu pasti menjadi kenyataan,
+because you deserve to be happy. ^^
+
+Enjoy your special day Tata..^^
+
+🎂
+
+</p>
+
+`;
+
+    letterBtn.style.display = "none";
     finalBtn.style.display = "inline-block";
+
 };
 
-// 🌙 7. Penutup yang Sinematik
-finalBtn.onclick = (e) => {
-    e.preventDefault();
+finalBtn.onclick = () => {
+
     page2.style.display = "none";
     page3.style.display = "block";
-    
-    // Membuat layar meredup/menggelap dramatis
-    overlay.classList.add("darken");
 
     page3.innerHTML = `
-        <div class="cinematic-text">
-            "Some moments are short...<br>
-            but memories can last forever."
-        </div>
-        <div class="cinematic-title">Happy Birthday, Tata ❤️</div>
-    `;
+
+<h1>🎂</h1>
+
+<h2>Happy Birthday</h2>
+
+<h3>Tata Aulia Syahnita</h3>
+
+<p class="subtitle">
+
+Thank you for opening this little surprise.
+
+I hope today becomes one of your happiest memories.
+
+Keep smiling.<br>
+Keep growing.<br>
+And always believe in yourself.<br><br>
+
+Happy 14th Birthday ❤️
+
+</p>
+
+<p style="margin-top:30px;color:#aaa;font-size:14px;">
+
+Made especially for Tata.
+
+</p>
+
+`;
+
 };
 
-// --- LOGIKA BACKGROUND & LINGKUNGAN ---
-
-// 🌸 3. Efek Kelopak Sakura Gugur
-setInterval(createSakura, 500);
-function createSakura() {
-    const sakura = document.createElement("div");
-    sakura.className = "sakura";
-    sakura.style.left = Math.random() * 100 + "vw";
-    
-    const size = Math.random() * 7 + 8 + "px";
-    sakura.style.width = size;
-    sakura.style.height = size;
-    
-    sakura.style.animationDuration = Math.random() * 3 + 4 + "s";
-    document.body.appendChild(sakura);
-    setTimeout(() => sakura.remove(), 7000);
-}
-
-// 🌌 2. Efek Shooting Star (Bintang Jatuh)
-setInterval(createShootingStar, 4000);
-function createShootingStar() {
-    const star = document.createElement("div");
-    star.className = "shooting-star";
-    star.style.left = Math.random() * 60 + "vw";
-    star.style.top = Math.random() * 20 + "vh";
-    document.body.appendChild(star);
-    setTimeout(() => star.remove(), 1500);
-}
-
-// 💖 4. Heart Cursor Trail (Jejak Sentuhan Layar)
-function spawnHeartTrail(x, y) {
-    const heart = document.createElement("div");
-    heart.className = "cursor-heart";
-    heart.innerHTML = "❤️";
-    heart.style.left = x + "px";
-    heart.style.top = y + "px";
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 1200);
-}
-
-document.addEventListener("mousemove", (e) => {
-    if (Math.random() < 0.12) { 
-        spawnHeartTrail(e.clientX, e.clientY);
-    }
-});
-
-document.addEventListener("touchmove", (e) => {
-    let touch = e.touches[0];
-    if (Math.random() < 0.2) {
-        spawnHeartTrail(touch.clientX, touch.clientY);
-    }
-});
-
-// Ledakan Konfeti
 function createConfetti() {
-    const colors = ["#ff2b2b", "#ffffff", "#ffd700", "#ff8c8c", "#ffb7c5"];
-    for (let i = 0; i < 90; i++) {
+
+    const colors = ["#ff2b2b", "#ffffff", "#ffd700", "#ff8c8c"];
+
+    for (let i = 0; i < 120; i++) {
+
         const c = document.createElement("div");
+
         c.className = "confetti";
+
         c.style.left = Math.random() * 100 + "vw";
-        c.style.background = colors[Math.floor(Math.random() * colors.length)];
-        c.style.animationDuration = (2 + Math.random() * 3) + "s";
+
+        c.style.background =
+            colors[Math.floor(Math.random() * colors.length)];
+
+        c.style.animationDuration =
+            (2 + Math.random() * 3) + "s";
+
         document.body.appendChild(c);
+
         setTimeout(() => c.remove(), 5000);
+
     }
+
 }
 
-// Hati Melayang di Background Lambat
-setInterval(createBackgroundHeart, 700);
-function createBackgroundHeart() {
+setInterval(createHeart, 400);
+
+function createHeart() {
+
     const heart = document.createElement("div");
+
     heart.className = "heart";
+
     heart.innerHTML = "❤️";
+
     heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = (14 + Math.random() * 12) + "px";
-    heart.style.animationDuration = (6 + Math.random() * 4) + "s";
+
+    heart.style.fontSize =
+        (16 + Math.random() * 18) + "px";
+
+    heart.style.animationDuration =
+        (4 + Math.random() * 4) + "s";
+
     document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 10000);
+
+    setTimeout(() => heart.remove(), 8000);
+
 }

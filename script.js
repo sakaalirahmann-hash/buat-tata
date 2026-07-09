@@ -77,13 +77,13 @@ function startTyping() {
         if (i >= text.length) {
             clearInterval(timer);
         }
-    }, 35);
+    }, 60);
 
     // Otomatis ganti ke Halaman Surat setelah mengetik selesai
     setTimeout(() => {
         page1.style.display = "none";
         page2.style.display = "block";
-    }, 18000); 
+    }, 38000); 
 }
 
 const letterBtn = document.getElementById("letterBtn");

@@ -1,28 +1,4 @@
-// ============================================================
-// 🎵 TRICK AUTOPLAY: Musik otomatis jalan saat layar disentuh pertama kali
-// ============================================================
-const bgMusic = document.getElementById("bgMusic");
-
-function mulaiMusikOtomatis() {
-    if (bgMusic) {
-        bgMusic.play().catch((error) => {
-            console.log("Autoplay diblokir browser, menunggu sentuhan pengguna.");
-        });
-    }
-    // Hapus event listener setelah musik berhasil jalan agar tidak bentrok
-    document.removeEventListener("click", mulaiMusikOtomatis);
-    document.removeEventListener("touchstart", mulaiMusikOtomatis);
-}
-
-// Deteksi ketukan (klik) atau sentuhan layar di HP
-document.addEventListener("click", mulaiMusikOtomatis);
-document.addEventListener("touchstart", mulaiMusikOtomatis);
-
-
-// ============================================================
-// KODE ASLI KAMU (DIBAWAH INI TETAP UTUH & TIDAK BERUBAH)
-// ============================================================
-const letterBtn = document.getElementById("letterBtn");
+Const letterBtn = document.getElementById("letterBtn");
 const letter = document.getElementById("letter");
 const finalBtn = document.getElementById("finalBtn");
 
@@ -31,7 +7,7 @@ letterBtn.onclick = (e) => {
     letter.classList.add("show");
     letter.innerHTML = `
     <h3 style="font-family:'Playfair Display', serif; font-size:18px; color:#ff69b4; margin-bottom:10px;">Happy 14th Birthday, Tata. 🌸</h3>
-    <p>Hari ini bukan hanya tentang bertambahnya usia Tata... tetapi juga tentang bertambahnya cerita, pengalaman, dan harapan baru.. ^^ Semoga kamu dan keluarga selalu diberi kesehatan dan kebahagiaan bersama yaa.. serta dikelilingi oleh orang-orang yang sayang sama kamu.. ^^ Dan sebelumnya aku minta maaf cuma bisa kasih ucapan aja, hehe... Terus berkembang dan tetap tersenyum yaa... Semua impianmu pasti menjadi kenyataan, because you deserve to be happy. ^^ Enjoy your special day Tata..^^</p>
+    <p>Hari ini bukan hanya tentang bertambahnya usia Tata... tetapi juga tentang bertambahnya cerita, pengalaman, dan harapan baru.. ^^ Semoga kamu dan keluarga selalu diberi kesehatan dan kebahagiaan bersama yaa.. serta dikelilingi oleh orang-orang yang sayang sama kamu.. ^^ Dan sebelumnya aku minta maaf cuma bisa kasih kamu ucapan..^^ Terus berkembang dan tetap tersenyum yaa... Semua impianmu pasti menjadi kenyataan, because you deserve to be happy. ^^ Enjoy your special day Tata..^^</p>
     `;
     letterBtn.style.display = "none";
     

@@ -121,8 +121,8 @@ finalBtn.onclick = (e) => {
 
     page3.innerHTML = `
         <div class="cinematic-text">
-            "Some moments are short...<br>
-            but memories can last forever."
+            "Aku harap kamu sehat selalu yaa..^^<br>
+            Because your family loves you so much."
         </div>
         <div class="cinematic-title">Happy Birthday, Tata ❤️</div>
     `;
